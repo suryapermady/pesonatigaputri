@@ -1,42 +1,101 @@
 
-// =====================================
+// ==========================================
 // BASO PESONA TIGA PUTRI
-// SISTEM PEMESANAN OTOMATIS
-// =====================================
+// SISTEM KASIR DAN PEMESANAN
+// ==========================================
+
+// ALAMAT KEDAI
+// Ganti alamat di bawah dengan alamat asli kedai.
+
+const alamatKedai =
+    "Jl. Contoh Alamat No. 123, Bandung, Jawa Barat";
 
 // DAFTAR MENU DAN HARGA
 
 const menu = [
-    { id: 1, nama: "Baso Biasa", harga: 10000 },
-    { id: 2, nama: "Baso Urat", harga: 15000 },
-    { id: 3, nama: "Baso Telur", harga: 15000 },
-    { id: 4, nama: "Baso Jumbo", harga: 20000 },
-    { id: 5, nama: "Baso Beranak", harga: 25000 },
-    { id: 6, nama: "Baso Mercon", harga: 20000 },
-    { id: 7, nama: "Mie Ayam", harga: 12000 },
-    { id: 8, nama: "Mie Ayam Bakso", harga: 17000 },
-    { id: 9, nama: "Es Teh", harga: 5000 },
+    { id: 1, nama: "Bakso Urat Biasa", harga: 12000 },
+    { id: 2, nama: "Bakso Urat Double", harga: 17000 },
+    { id: 3, nama: "Baso Urat + Ceker", harga: 15000 },
+    { id: 4, nama: "Baso Urat + Cincang", harga: 15000 },
+    { id: 5, nama: "Baso Urat + Babat", harga: 15000 },
+    { id: 6, nama: "Baso Urat + Kikil", harga: 15000 },
+    { id: 7, nama: "Bakso Isi Cincang", harga: 15000 },
+    { id: 8, nama: "Bakso Iga", harga: 20000 },
+    { id: 9, nama: "Air Mineral", harga: 5000 },
     { id: 10, nama: "Es Jeruk", harga: 7000 },
-    { id: 11, nama: "Air Mineral", harga: 4000 }
+    { id: 11, nama: "Juice Mangga", harga: 8000 }
 ];
 
-// MENYIMPAN DATA PESANAN
+// MENYIMPAN PESANAN
 
 let pesanan = {};
 
+// ==========================================
 // FORMAT RUPIAH
+// ==========================================
 
 function rupiah(angka) {
+
     return new Intl.NumberFormat("id-ID", {
         style: "currency",
         currency: "IDR",
         maximumFractionDigits: 0
     }).format(angka);
+
 }
 
-// =====================================
+// ==========================================
+// ALAMAT KEDAI
+// ==========================================
+
+document.getElementById("alamatKedai").textContent =
+    alamatKedai;
+
+// ==========================================
+// NOMOR ANTRIAN OTOMATIS
+// ==========================================
+
+// Nomor antrean tersimpan di browser
+
+let nomorAntrian = Number(
+    localStorage.getItem("nomorAntrian")
+) || 1;
+
+// Tampilkan nomor antrean
+
+function tampilkanAntrian() {
+
+    document.getElementById("nomorAntrian").textContent =
+        "#" + nomorAntrian;
+
+    localStorage.setItem(
+        "nomorAntrian",
+        nomorAntrian
+    );
+
+}
+
+// Reset nomor antrean
+
+function resetAntrian() {
+
+    const konfirmasi = confirm(
+        "Apakah Anda yakin ingin mereset antrean menjadi #1?"
+    );
+
+    if (!konfirmasi) return;
+
+    nomorAntrian = 1;
+
+    tampilkanAntrian();
+
+    alert("Nomor antrean berhasil direset!");
+
+}
+
+// ==========================================
 // JAM, TANGGAL, BULAN DAN TAHUN OTOMATIS
-// =====================================
+// ==========================================
 
 function updateWaktu() {
 
@@ -63,22 +122,23 @@ function updateWaktu() {
 
     document.getElementById("tanggal").textContent =
         tanggal;
+
 }
 
-// UPDATE SETIAP DETIK
+// Jalankan jam setiap detik
 
 updateWaktu();
 
 setInterval(updateWaktu, 1000);
 
-
-// =====================================
+// ==========================================
 // MENAMPILKAN DAFTAR MENU
-// =====================================
+// ==========================================
 
 function tampilkanMenu() {
 
-    const daftarMenu = document.getElementById("daftarMenu");
+    const daftarMenu =
+        document.getElementById("daftarMenu");
 
     daftarMenu.innerHTML = "";
 
@@ -100,13 +160,15 @@ function tampilkanMenu() {
 
                 <div class="jumlah">
 
-                    <button onclick="ubahJumlah(${item.id}, -1)">
+                    <button
+                        onclick="ubahJumlah(${item.id}, -1)">
                         −
                     </button>
 
                     <span>${jumlah}</span>
 
-                    <button onclick="ubahJumlah(${item.id}, 1)">
+                    <button
+                        onclick="ubahJumlah(${item.id}, 1)">
                         +
                     </button>
 
@@ -115,13 +177,14 @@ function tampilkanMenu() {
             </div>
 
         `;
+
     });
+
 }
 
-
-// =====================================
-// TAMBAH DAN KURANG PESANAN
-// =====================================
+// ==========================================
+// TAMBAH DAN KURANG JUMLAH PESANAN
+// ==========================================
 
 function ubahJumlah(id, perubahan) {
 
@@ -144,16 +207,17 @@ function ubahJumlah(id, perubahan) {
     tampilkanMenu();
 
     hitungTotal();
+
 }
 
-
-// =====================================
-// HITUNG TOTAL HARGA OTOMATIS
-// =====================================
+// ==========================================
+// MENGHITUNG TOTAL HARGA OTOMATIS
+// ==========================================
 
 function hitungTotal() {
 
-    const rincian = document.getElementById("rincianPesanan");
+    const rincian =
+        document.getElementById("rincianPesanan");
 
     let total = 0;
 
@@ -174,11 +238,13 @@ function hitungTotal() {
                 <div class="rincian-item">
 
                     <div>
+
                         <strong>${item.nama}</strong>
 
                         <small>
                             ${jumlah} x ${rupiah(item.harga)}
                         </small>
+
                     </div>
 
                     <strong>
@@ -188,6 +254,7 @@ function hitungTotal() {
                 </div>
 
             `;
+
         }
 
     });
@@ -199,18 +266,20 @@ function hitungTotal() {
         rupiah(total);
 
     return total;
+
 }
 
-
-// =====================================
+// ==========================================
 // RESET PESANAN
-// =====================================
+// ==========================================
 
 function resetPesanan() {
 
-    if (!confirm("Yakin ingin menghapus semua pesanan?")) {
-        return;
-    }
+    const konfirmasi = confirm(
+        "Yakin ingin menghapus semua pesanan?"
+    );
+
+    if (!konfirmasi) return;
 
     pesanan = {};
 
@@ -219,12 +288,12 @@ function resetPesanan() {
     tampilkanMenu();
 
     hitungTotal();
+
 }
 
-
-// =====================================
+// ==========================================
 // CETAK STRUK PEMBAYARAN
-// =====================================
+// ==========================================
 
 function cetakStruk() {
 
@@ -234,13 +303,19 @@ function cetakStruk() {
     const total = hitungTotal();
 
     if (!nama) {
-        alert("Masukkan nama pelanggan terlebih dahulu!");
+
+        alert("Silakan masukkan nama pelanggan!");
+
         return;
+
     }
 
     if (total === 0) {
+
         alert("Silakan pilih menu terlebih dahulu!");
+
         return;
+
     }
 
     const sekarang = new Date();
@@ -250,6 +325,8 @@ function cetakStruk() {
         dateStyle: "full",
         timeStyle: "medium"
     });
+
+    // Mengamankan nama pelanggan
 
     const aman = teks => teks.replace(/[&<>"']/g, karakter => ({
         "&": "&amp;",
@@ -282,23 +359,31 @@ function cetakStruk() {
                 </div>
 
             `;
+
         }
+
     });
+
+    const antrianSaatIni = nomorAntrian;
 
     const jendela = window.open(
         "",
         "_blank",
-        "width=450,height=650"
+        "width=450,height=700"
     );
 
     if (!jendela) {
-        alert("Izinkan pop-up untuk mencetak struk.");
+
+        alert("Izinkan pop-up browser untuk mencetak struk.");
+
         return;
+
     }
 
     jendela.document.write(`
 
         <!DOCTYPE html>
+
         <html lang="id">
 
         <head>
@@ -310,11 +395,24 @@ function cetakStruk() {
             <style>
 
                 body {
-                    font-family: Arial;
+                    font-family: Arial, sans-serif;
                     padding: 20px;
                 }
 
                 h2, p {
+                    text-align: center;
+                }
+
+                .antrian {
+                    text-align: center;
+                    font-size: 30px;
+                    font-weight: bold;
+                    color: #a00000;
+                    margin: 15px;
+                }
+
+                .alamat {
+                    font-size: 12px;
                     text-align: center;
                 }
 
@@ -341,9 +439,17 @@ function cetakStruk() {
 
             <p>Lezat Rasanya, Istimewa Nikmatnya</p>
 
+            <p class="alamat">
+                ${alamatKedai}
+            </p>
+
             <hr>
 
-            <p>Nama: ${aman(nama)}</p>
+            <div class="antrian">
+                ANTRIAN #${antrianSaatIni}
+            </div>
+
+            <p>Nama Pelanggan: ${aman(nama)}</p>
 
             <p>${tanggal} WIB</p>
 
@@ -360,9 +466,11 @@ function cetakStruk() {
             <p>Terima kasih telah berbelanja ❤️</p>
 
             <script>
+
                 window.onload = function() {
                     window.print();
                 };
+
             <\/script>
 
         </body>
@@ -372,12 +480,30 @@ function cetakStruk() {
     `);
 
     jendela.document.close();
+
+    // Naikkan antrean setelah jendela struk berhasil dibuka
+
+    nomorAntrian++;
+
+    tampilkanAntrian();
+
+    // Kosongkan pesanan untuk pelanggan berikutnya
+
+    pesanan = {};
+
+    document.getElementById("namaPelanggan").value = "";
+
+    tampilkanMenu();
+
+    hitungTotal();
+
 }
 
+// ==========================================
+// JALANKAN WEBSITE
+// ==========================================
 
-// =====================================
-// MENJALANKAN PROGRAM
-// =====================================
+tampilkanAntrian();
 
 tampilkanMenu();
 
