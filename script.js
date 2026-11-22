@@ -8,7 +8,7 @@
 // Ganti alamat di bawah dengan alamat asli kedai.
 
 const alamatKedai =
-    "Jl. Contoh Alamat No. 123, Bandung, Jawa Barat";
+    "Jl. Raya Pemda, Sukamulya, Kec. Singaparna,  Kabupaten Tasikmalaya, Jawa Barat 46416";
 
 // DAFTAR MENU DAN HARGA
 
