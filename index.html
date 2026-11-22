@@ -1,0 +1,118 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baso Pesona Tiga Putri</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- HEADER KEDAI -->
+    <header class="header">
+
+        <div class="logo">🍜</div>
+
+        <h1>BASO PESONA TIGA PUTRI</h1>
+
+        <p class="slogan">
+            Lezat Rasanya, Istimewa Nikmatnya
+        </p>
+
+        <!-- JAM DAN TANGGAL DI BAWAH HEADER -->
+        <div class="waktu-container">
+
+            <div id="jam">00:00:00 WIB</div>
+
+            <div id="tanggal">
+                Memuat tanggal...
+            </div>
+
+        </div>
+
+        <div class="welcome">
+            SELAMAT DATANG DI KEDAI KAMI
+        </div>
+
+    </header>
+
+    <main class="container">
+
+        <!-- DATA PELANGGAN -->
+        <section class="card">
+
+            <h2>👤 DATA PELANGGAN</h2>
+
+            <label for="namaPelanggan">
+                Nama Pelanggan
+            </label>
+
+            <input
+                type="text"
+                id="namaPelanggan"
+                placeholder="Masukkan nama pelanggan..."
+            >
+
+        </section>
+
+        <!-- MENU MAKANAN -->
+        <section class="card">
+
+            <h2>🍜 DAFTAR MENU MAKANAN & MINUMAN</h2>
+
+            <div id="daftarMenu"></div>
+
+        </section>
+
+        <!-- RINCIAN PESANAN -->
+        <section class="card">
+
+            <h2>🛒 RINCIAN PESANAN</h2>
+
+            <div id="rincianPesanan">
+                <p class="kosong">
+                    Belum ada pesanan.
+                </p>
+            </div>
+
+            <div class="total">
+
+                <p>TOTAL PEMBAYARAN</p>
+
+                <h1 id="totalHarga">
+                    Rp 0
+                </h1>
+
+            </div>
+
+            <div class="tombol">
+
+                <button
+                    onclick="resetPesanan()"
+                    class="btn-reset">
+                    RESET PESANAN
+                </button>
+
+                <button
+                    onclick="cetakStruk()"
+                    class="btn-cetak">
+                    CETAK STRUK
+                </button>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>© 2026 BASO PESONA TIGA PUTRI</p>
+        <p>Terima kasih telah berbelanja ❤️</p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
