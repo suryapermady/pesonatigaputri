@@ -1,10 +1,14 @@
 
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Baso Pesona Tiga Putri</title>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -12,6 +16,19 @@
 
     <!-- HEADER KEDAI -->
     <header class="header">
+
+        <!-- NOMOR ANTRIAN POJOK KIRI -->
+        <div class="antrian-box">
+
+            <span>NOMOR ANTRIAN</span>
+
+            <h2 id="nomorAntrian">#1</h2>
+
+            <button onclick="resetAntrian()">
+                RESET ANTRIAN
+            </button>
+
+        </div>
 
         <div class="logo">🍜</div>
 
@@ -21,7 +38,19 @@
             Lezat Rasanya, Istimewa Nikmatnya
         </p>
 
-        <!-- JAM DAN TANGGAL DI BAWAH HEADER -->
+        <!-- ALAMAT KEDAI -->
+        <div class="alamat">
+
+            <span>📍 ALAMAT TOKO</span>
+
+            <p id="alamatKedai">
+                Jl. Raya Pemda, Sukamulya, Kec. Singaparna, 
+                Kabupaten Tasikmalaya, Jawa Barat 46416
+            </p>
+
+        </div>
+
+        <!-- JAM DAN TANGGAL DI BAWAH -->
         <div class="waktu-container">
 
             <div id="jam">00:00:00 WIB</div>
@@ -33,7 +62,7 @@
         </div>
 
         <div class="welcome">
-            SELAMAT DATANG DI KEDAI KAMI
+            SELAMAT DATANG DI TOKO KAMI
         </div>
 
     </header>
@@ -57,7 +86,7 @@
 
         </section>
 
-        <!-- MENU MAKANAN -->
+        <!-- DAFTAR MENU -->
         <section class="card">
 
             <h2>🍜 DAFTAR MENU MAKANAN & MINUMAN</h2>
@@ -72,18 +101,18 @@
             <h2>🛒 RINCIAN PESANAN</h2>
 
             <div id="rincianPesanan">
+
                 <p class="kosong">
                     Belum ada pesanan.
                 </p>
+
             </div>
 
             <div class="total">
 
                 <p>TOTAL PEMBAYARAN</p>
 
-                <h1 id="totalHarga">
-                    Rp 0
-                </h1>
+                <h1 id="totalHarga">Rp 0</h1>
 
             </div>
 
@@ -108,11 +137,15 @@
     </main>
 
     <footer>
+
         <p>© 2026 BASO PESONA TIGA PUTRI</p>
+
         <p>Terima kasih telah berbelanja ❤️</p>
+
     </footer>
 
     <script src="script.js"></script>
 
 </body>
+
 </html>
