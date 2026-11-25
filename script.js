@@ -290,6 +290,74 @@ function resetPesanan() {
     hitungTotal();
 
 }
+// ==========================================
+// SIMPAN PESANAN
+// ==========================================
+
+function simpanPesanan() {
+  const nama = document.getElementById("namaPelanggan")
+    .value.trim();
+
+  if (!nama) {
+    alert("Masukkan nama pelanggan!");
+    return;
+  }
+
+  if (!keranjang || keranjang.length === 0) {
+    alert("Pilih menu terlebih dahulu!");
+    return;
+  }
+
+  const tombol = document.querySelector(
+    'button[onclick="simpanPesanan()"]'
+  );
+
+  tombol.disabled = true;
+  tombol.textContent = "MENYIMPAN...";
+
+  const data = {
+    nama: nama,
+    items: keranjang.map(item => ({
+      menu: item.menu,
+      harga: Number(item.harga),
+      jumlah: Number(item.jumlah)
+    }))
+  };
+
+  google.script.run
+    .withSuccessHandler(function(hasil) {
+      alert(
+        "PESANAN BERHASIL DISIMPAN!\n" +
+        "Nomor antrean: #" + hasil.nomor +
+        "\nNama: " + hasil.nama +
+        "\nTotal: Rp" + hasil.total.toLocaleString("id-ID")
+      );
+
+      document.getElementById("nomorAntrean").textContent =
+        "#" + hasil.nomor;
+
+      tombol.textContent = "✅ BERHASIL DISIMPAN";
+
+      // Aktifkan tombol cetak jika tersedia
+      if (typeof siapkanStruk === "function") {
+        dataStrukTerakhir = hasil;
+        siapkanStruk(hasil);
+        document.getElementById("btnCetak").disabled = false;
+      }
+
+      // Kosongkan keranjang setelah berhasil
+      keranjang = [];
+      tampilkanKeranjang();
+
+      document.getElementById("namaPelanggan").value = "";
+    })
+    .withFailureHandler(function(error) {
+      alert("GAGAL MENYIMPAN: " + error.message);
+      tombol.disabled = false;
+      tombol.textContent = "💾 SIMPAN KE GOOGLE SHEETS";
+    })
+    .simpanPesanan(data);
+}
 
 // ==========================================
 // CETAK STRUK PEMBAYARAN
