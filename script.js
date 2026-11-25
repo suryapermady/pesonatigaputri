@@ -298,29 +298,39 @@ function resetPesanan() {
 // ==========================================
 
 
-function simpanPesanan() {
+const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbzITPhPB59RE6IEYUyz2jmhgOlDd7B8BXifXuc94_SpXUtgH3y5e86roSD7LTEcZrP-/exec";
+
+async function simpanPesanan() {
 
   const data = {
-    nama: document.getElementById('nama').value,
-    menu: document.getElementById('menu').value,
-    jumlah: Number(document.getElementById('jumlah').value),
-    total: Number(document.getElementById('total').value)
+    namaPelanggan: document.getElementById("namaPelanggan").value,
+    daftarMenu: document.getElementById("daftarMenu").value,
+    rincianPesanan: document.getElementById("rincianPesanan").value,
+    totalHarga: document.getElementById("totalHarga").value,
+    jam: document.getElementById("jam").value,
+    tanggal: document.getElementById("tanggal").value
   };
 
-  if (!data.nama || !data.menu || data.jumlah <= 0) {
-    alert('Mohon lengkapi data pesanan!');
-    return;
-  }
+ 
 
-  google.script.run
-    .withSuccessHandler(function(pesan) {
-      alert(pesan);
-    })
-    .withFailureHandler(function(error) {
-      alert('Gagal menyimpan: ' + error.message);
-    })
-    .simpanPesanan(data);
+  try {
+    await fetch(SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "text/plain;charset=utf-8"
+      },
+      body: JSON.stringify(data)
+    });
+
+    alert("Pesanan dikirim. Periksa Google Sheets!");
+    
+  } catch (error) {
+    alert("Gagal mengirim pesanan!");
+    console.error(error);
+  }
 }
+
 
 
 // ==========================================
