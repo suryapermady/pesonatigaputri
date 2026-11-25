@@ -25,8 +25,9 @@ const menu = [
     { id: 10, nama: "Es Jeruk", harga: 7000 },
     { id: 11, nama: "Jus Alpukat", harga: 10000 },
     { id: 12, nama: "Pop Ice", harga: 5000 },
-    { id: 13, nama: "Kopi", harga: 5000 },
-    { id: 11, nama: "Teh Botol make es", harga: 6000 }
+    { id: 13, nama: "Kopi", harga: 4000 },
+    { id: 14, nama: "Teh Botol make es", harga: 6000 },
+    { id: 15, nama: "Kerupuk putih", harga: 1000 }
 ];
 
 // MENYIMPAN PESANAN
@@ -477,7 +478,7 @@ function cetakStruk() {
 
         <body>
 
-            <h2>BASO PESONA TIGA PUTRI</h2>
+            <h2>🍜BASO PESONA TIGA PUTRI</h2>
 
             <p>Lezat Rasanya, Istimewa Nikmatnya</p>
 
