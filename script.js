@@ -23,7 +23,10 @@ const menu = [
     { id: 8, nama: "Bakso Iga", harga: 20000 },
     { id: 9, nama: "Air Mineral", harga: 5000 },
     { id: 10, nama: "Es Jeruk", harga: 7000 },
-    { id: 11, nama: "Juice Mangga", harga: 8000 }
+    { id: 11, nama: "Jus Alpukat", harga: 10000 },
+    { id: 12, nama: "Pop Ice", harga: 5000 },
+    { id: 13, nama: "Kopi", harga: 5000 },
+    { id: 11, nama: "Teh Botol make es", harga: 6000 }
 ];
 
 // MENYIMPAN PESANAN
@@ -294,70 +297,31 @@ function resetPesanan() {
 // SIMPAN PESANAN
 // ==========================================
 
+
 function simpanPesanan() {
-  const nama = document.getElementById("namaPelanggan")
-    .value.trim();
-
-  if (!nama) {
-    alert("Masukkan nama pelanggan!");
-    return;
-  }
-
-  if (!keranjang || keranjang.length === 0) {
-    alert("Pilih menu terlebih dahulu!");
-    return;
-  }
-
-  const tombol = document.querySelector(
-    'button[onclick="simpanPesanan()"]'
-  );
-
-  tombol.disabled = true;
-  tombol.textContent = "MENYIMPAN...";
 
   const data = {
-    nama: nama,
-    items: keranjang.map(item => ({
-      menu: item.menu,
-      harga: Number(item.harga),
-      jumlah: Number(item.jumlah)
-    }))
+    nama: document.getElementById('nama').value,
+    menu: document.getElementById('menu').value,
+    jumlah: Number(document.getElementById('jumlah').value),
+    total: Number(document.getElementById('total').value)
   };
 
+  if (!data.nama || !data.menu || data.jumlah <= 0) {
+    alert('Mohon lengkapi data pesanan!');
+    return;
+  }
+
   google.script.run
-    .withSuccessHandler(function(hasil) {
-      alert(
-        "PESANAN BERHASIL DISIMPAN!\n" +
-        "Nomor antrean: #" + hasil.nomor +
-        "\nNama: " + hasil.nama +
-        "\nTotal: Rp" + hasil.total.toLocaleString("id-ID")
-      );
-
-      document.getElementById("nomorAntrean").textContent =
-        "#" + hasil.nomor;
-
-      tombol.textContent = "✅ BERHASIL DISIMPAN";
-
-      // Aktifkan tombol cetak jika tersedia
-      if (typeof siapkanStruk === "function") {
-        dataStrukTerakhir = hasil;
-        siapkanStruk(hasil);
-        document.getElementById("btnCetak").disabled = false;
-      }
-
-      // Kosongkan keranjang setelah berhasil
-      keranjang = [];
-      tampilkanKeranjang();
-
-      document.getElementById("namaPelanggan").value = "";
+    .withSuccessHandler(function(pesan) {
+      alert(pesan);
     })
     .withFailureHandler(function(error) {
-      alert("GAGAL MENYIMPAN: " + error.message);
-      tombol.disabled = false;
-      tombol.textContent = "💾 SIMPAN KE GOOGLE SHEETS";
+      alert('Gagal menyimpan: ' + error.message);
     })
     .simpanPesanan(data);
 }
+
 
 // ==========================================
 // CETAK STRUK PEMBAYARAN
