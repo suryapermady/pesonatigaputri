@@ -504,7 +504,7 @@ function cetakStruk() {
                 <h2>TOTAL: ${rupiah(total)}</h2>
 
             </div>
-            <p>Menerima pesanan : 📞 +62823-1926-1283</p>
+            <p>Menerima pesanan : 📞 +62 823-1926-1283</p>
             <p>Terima kasih telah berbelanja ❤️</p>
 
             <script>
