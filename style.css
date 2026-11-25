@@ -369,9 +369,14 @@ input:focus {
     background: #555;
 }
 
-.btn-cetak {
-    background: #a00000;
+.btn-simpan {
+    background: #5900ff;
 }
+
+.btn-cetak {
+    background: #f30000;
+}
+
 
 .btn-reset:hover {
     background: #333;
