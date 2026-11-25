@@ -505,7 +505,7 @@ function cetakStruk() {
 
             </div>
             <p>Menerima pesanan : 📞 +62 823-1926-1283</p>
-            <p>Terima kasih telah berbelanja ❤️</p>
+            <p>Terima kasih telah menikmatinya ❤️</p>
 
             <script>
 
